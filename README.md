@@ -35,3 +35,10 @@ See the following documentation pages for help installing Craft 3:
 - **[CraftQuest](https://craftquest.io/)** – Watch unlimited video lessons and courses.
 - **[Craft Link List](http://craftlinklist.com/)** – Stay in-the-know.
 - **[nystudio107 Blog](https://nystudio107.com/blog)** – Learn Craft and modern web development.
+
+## References
+
+- **[craftcms/craft](https://github.com/craftcms/craft)**
+- **[Annotated webpack 4 Config](https://github.com/nystudio107/annotated-webpack-4-config)**
+- **[nystudio107/craft](https://github.com/nystudio107/craft)**
+- **[CraftQuest Craft Starter Project](https://github.com/CraftQuest/craft-starter)**
