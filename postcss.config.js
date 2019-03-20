@@ -5,7 +5,7 @@ module.exports = {
                 require('stylelint')
             ]
         }),
-        require('tailwindcss')('./tailwind.config.js'),
+        require('tailwindcss')('./tailwind.js'),
         require('postcss-preset-env')({
             autoprefixer: { grid: true },
             features: {

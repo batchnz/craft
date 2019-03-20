@@ -1,50 +1,34 @@
 /**
- * app.css
- *
- * The entry point for the css.
- *
- */
-
-/**
  * This injects Tailwind's base styles, which is a combination of
  * Normalize.css and some additional base styles.
  *
  * You can see the styles here:
  * https://github.com/tailwindcss/tailwindcss/blob/master/css/preflight.css
  */
- @import "tailwindcss/preflight";
+@import "tailwindcss/preflight";
 
 /**
  * This injects any component classes registered by plugins.
- *
  */
-@import 'tailwindcss/components';
+@import "tailwindcss/components";
 
 /**
- * Here we add custom component classes; stuff we want loaded
- * *before* the utilities so that the utilities can still
+ * Here you would add any of your custom component classes; stuff that you'd
+ * want loaded *before* the utilities so that the utilities could still
  * override them.
- *
  */
-@import './components/global.pcss';
-@import './components/typography.pcss';
-@import './components/webfonts.pcss';
+
+/* @import './components/buttons.pcss'; */
 
 /**
  * This injects all of Tailwind's utility classes, generated based on your
  * config file.
- *
  */
 @import 'tailwindcss/utilities';
 
 /**
- * Include styles for individual pages
- *
+ * Here you would add any custom utilities you need that don't come out of the
+ * box with Tailwind.
  */
-@import './pages/homepage.pcss';
 
-/**
- * Include vendor css.
- *
- */
- @import 'vendor.pcss';
+/* @import "./utilities/background-patterns"; */
