@@ -1,6 +1,6 @@
 {
-  "name": "craftcms/craft",
-  "description": "Craft CMS",
+  "name": "batch/craft-starter",
+  "description": "Batch's Composer starter project for Craft CMS",
   "keywords": [
     "craft",
     "cms",
