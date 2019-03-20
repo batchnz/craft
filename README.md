@@ -39,6 +39,7 @@ See the following documentation pages for help installing Craft 3:
 ## References
 
 - **[craftcms/craft](https://github.com/craftcms/craft)**
+- **[An Annotated webpack 4 Config for Frontend Web Development](https://nystudio107.com/blog/an-annotated-webpack-4-config-for-frontend-web-development)**
 - **[Annotated webpack 4 Config](https://github.com/nystudio107/annotated-webpack-4-config)**
-- **[nystudio107/craft](https://github.com/nystudio107/craft)**
 - **[CraftQuest Craft Starter Project](https://github.com/CraftQuest/craft-starter)**
+- **[nystudio107/craft](https://github.com/nystudio107/craft)**
