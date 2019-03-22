@@ -203,7 +203,7 @@ const configureOptimization = (buildType) => {
                     common: false,
                     styles: {
                         name: settings.vars.cssName,
-                        test: /\.(pcss|css|vue)$/,
+                        test: /\.(css|vue)$/,
                         chunks: 'all',
                         enforce: true
                     }
@@ -241,7 +241,7 @@ const configureOptimization = (buildType) => {
 const configurePostcssLoader = (buildType) => {
     if (buildType === LEGACY_CONFIG) {
         return {
-            test: /\.(pcss|css)$/,
+            test: /\.(css)$/,
             use: [
                 MiniCssExtractPlugin.loader,
                 {
@@ -266,7 +266,7 @@ const configurePostcssLoader = (buildType) => {
     // Don't generate CSS for the modern config in production
     if (buildType === MODERN_CONFIG) {
         return {
-            test: /\.(pcss|css)$/,
+            test: /\.(css)$/,
             loader: 'ignore-loader'
         };
     }

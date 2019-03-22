@@ -1,9 +1,9 @@
-import styles from '../css/app.pcss';
+import styles from '../css/app.css';
 
 // App main
 const main = async () => {
     // Import our CSS
-    //const Styles = await import(/* webpackChunkName: "styles" */ '../css/app.pcss');
+    //const Styles = await import(/* webpackChunkName: "styles" */ '../css/app.css');
     // Async load the vue module
     const Vue = await import(/* webpackChunkName: "vue" */ 'vue');
     // Create our vue instance

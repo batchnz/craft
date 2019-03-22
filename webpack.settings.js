@@ -74,7 +74,7 @@ module.exports = {
             "./src/vue/**/*.{vue,html}"
         ],
         whitelist: [
-            "./src/css/components/**/*.{css,pcss}"
+            "./src/css/components/**/*.{css}"
         ],
         whitelistPatterns: [],
         extensions: [
