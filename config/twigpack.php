@@ -32,7 +32,7 @@ return [
 
     // Local files config
     'localFiles' => [
-      'basePath' => '@webroot/dist',
+      'basePath' => '@webroot/',
       'criticalPrefix' => 'dist/criticalcss/',
       'criticalSuffix' => '_critical.min.css',
     ],
