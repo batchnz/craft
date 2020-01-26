@@ -1,0 +1,11 @@
+@import "./fonts.css";
+
+@tailwind base;
+
+@tailwind components;
+
+/* Component includes go here */
+
+@tailwind utilities;
+
+/* Utility includes go here */
