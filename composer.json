@@ -1,7 +1,17 @@
 {
   "require": {
+    "aelvan/imager": "v2.3.1",
     "craftcms/cms": "^3.0.0",
+    "craftcms/mailgun": "1.4.2",
+    "craftcms/redactor": "2.4.0",
+    "nystudio107/craft-seomatic": "3.2.39",
     "nystudio107/craft-twigpack": "1.1.13",
+    "solspace/craft-freeform": "3.5.10",
+    "spicyweb/craft-neo": "2.5.10",
+    "superbig/craft3-http2serverpush": "1.0.1",
+    "thejoshsmith/craft-title-to-sidebar": "1.0.1",
+    "verbb/image-resizer": "2.0.6",
+    "verbb/navigation": "1.2.7",
     "vlucas/phpdotenv": "^3.4.0"
   },
   "autoload": {

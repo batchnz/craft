@@ -6,11 +6,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,minimum-scale=1">
 
-{# -- Environment specifics -- #}
-{% if environment in ['dev','staging'] %}
-    <meta name="robots" content="noindex, nofollow, nosnippet, noarchive, nocache">
-{% endif %}
-
 {#-- Favicon --#}
 <link rel="apple-touch-icon" sizes="180x180" href="{{ siteUrl }}assets/images/favicon/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="{{ siteUrl }}assets/images/favicon/favicon-32x32.png">
@@ -21,5 +16,5 @@
 <meta name="theme-color" content="#ffffff">
 
 {#-- CSS/Links --#}
-{{ craft.twigpack.includeCssModule("styles.css", false) }}
+{{ craft.twigpack.includeCssModule('styles.css', false) }}
 {{ craft.twigpack.includeCssRelPreloadPolyfill() }}
