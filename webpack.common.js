@@ -50,6 +50,15 @@ const configureBabelLoader = browserList => {
   };
 };
 
+// Configure eslint loader
+const configureEslintLoader = () => {
+  return {
+    test: /\.js$/,
+    exclude: /node_modules/,
+    use: ['eslint-loader']
+  };
+};
+
 // Configure Entries
 const configureEntries = () => {
   let entries = {};
@@ -125,8 +134,7 @@ const baseConfig = {
 const legacyConfig = {
   module: {
     rules: [
-      configureBabelLoader(Object.values(pkg.browserslist.legacyBrowsers))
-    ]
+      configureBabelLoader(Object.values(pkg.browserslist.legacyBrowsers))    ]
   },
   plugins: [new ManifestPlugin(configureManifest("manifest-legacy.json"))]
 };
@@ -135,7 +143,8 @@ const legacyConfig = {
 const modernConfig = {
   module: {
     rules: [
-      configureBabelLoader(Object.values(pkg.browserslist.modernBrowsers))
+      configureBabelLoader(Object.values(pkg.browserslist.modernBrowsers)),
+      configureEslintLoader()
     ]
   },
   plugins: [new ManifestPlugin(configureManifest("manifest.json"))]
