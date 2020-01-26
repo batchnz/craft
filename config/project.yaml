@@ -1,4 +1,4 @@
-dateModified: 1580029222
+dateModified: 1580030582
 email:
   fromEmail: josh@batch.nz
   fromName: 'Batch Craft Starter'
@@ -25,7 +25,7 @@ sites:
     siteGroup: a50ebe94-de60-4d01-8ed1-cdc869db10a2
     sortOrder: 1
 system:
-  edition: solo
+  edition: pro
   name: 'Batch Craft Starter'
   live: true
   schemaVersion: 3.3.3
