@@ -1,5 +1,5 @@
 {% set environment = craft.app.config.env %}
-{% set supportsWebp = craft.imager is defined and craft.imager.serverSupportsWebp %}
+{% set supportsWebp = craft.imager is defined and craft.imager.serverSupportsWebp ?? null %}
 {% set pngImageFormat = supportsWebp ? 'webp' : 'png' %}
 
 {% header "Link: <#{siteUrl}>; rel=dns-prefetch;,<#{siteUrl}>; rel=preconnect; crossorigin;" %}
