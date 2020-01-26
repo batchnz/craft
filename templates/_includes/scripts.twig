@@ -1,0 +1,15 @@
+{#-- Inline Javascript --#}
+{% set csrfJs %}
+window.csrfTokenName = '{{craft.app.config.general.csrfTokenName}}';
+window.csrfTokenValue = '{{ craft.app.request.csrfToken }}';
+{% endset %}
+{% js csrfJs %}
+
+{#-- Javascript --#}
+{{ craft.twigpack.includeSafariNomoduleFix() }}
+{{ craft.twigpack.includeJsModule('app.js', true) }}
+
+<script>
+    {# Special global object for storing scripts to be loaded #}
+    window.devMode = {{craft.app.config.general.devMode ? 'true' : 'false'}};
+</script>

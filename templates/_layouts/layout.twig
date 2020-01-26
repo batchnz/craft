@@ -1,0 +1,27 @@
+{% set environment = craft.app.config.env %}
+{% set supportsWebp = craft.imager is defined and craft.imager.serverSupportsWebp %}
+{% set pngImageFormat = supportsWebp ? 'webp' : 'png' %}
+
+{% header "Link: <#{siteUrl}>; rel=dns-prefetch;,<#{siteUrl}>; rel=preconnect; crossorigin;" %}
+<!doctype html>
+<html class="no-js" lang="{{ craft.app.language |slice(0,2) }}" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
+    <head>
+        {% include "_includes/head.twig" %}
+        {% block head %}{% endblock %}
+    </head>
+    <body>
+        {# Google Tag Manager #}
+        {# <script> will be inject into head and <noscript> will be left here) #}
+        {% include "_includes/googleAnalytics.twig" %}
+        {% include "_includes/header.twig" %}
+
+        {% block template %}{% endblock %}
+
+        {% include "_includes/footer.twig" %}
+        {% include "_includes/scripts.twig" %}
+        {% block footer %}{% endblock %}
+
+    </body>
+</html>
+
+
