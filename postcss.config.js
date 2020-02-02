@@ -28,7 +28,6 @@ module.exports = {
       }
     }),
     require('postcss-reporter')({ clearReportedMessages: true }),
-    require('postcss-inline-svg'),
-    require('cssnano')
+    require('postcss-inline-svg')
   ]
 };
