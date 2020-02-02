@@ -1,16 +1,17 @@
 // webpack.dev.js - developmental builds
-const LEGACY_CONFIG = "legacy";
-const MODERN_CONFIG = "modern";
+const LEGACY_CONFIG = 'legacy';
+const MODERN_CONFIG = 'modern';
 
 // node modules
-const merge = require("webpack-merge");
-const path = require("path");
-const webpack = require("webpack");
+const merge = require('webpack-merge');
+const path = require('path');
+const webpack = require('webpack');
+const DashboardPlugin = require('webpack-dashboard/plugin');
 
 // config files
-const common = require("./webpack.common.js");
-const pkg = require("./package.json");
-const settings = require("./webpack.settings.js");
+const common = require('./webpack.common.js');
+const pkg = require('./package.json');
+const settings = require('./webpack.settings.js');
 
 // Configure the webpack-dev-server
 const configureDevServer = buildType => {
@@ -29,7 +30,7 @@ const configureDevServer = buildType => {
       ignored: /node_modules/
     },
     headers: {
-      "Access-Control-Allow-Origin": "*"
+      'Access-Control-Allow-Origin': '*'
     }
   };
 };
@@ -38,12 +39,12 @@ const configureDevServer = buildType => {
 const configureImageLoader = buildType => {
   if (buildType === LEGACY_CONFIG) {
     return {
-      test: /\.(png|jpe?g|gif|svg|webp)$/i,
+      test: /\.(png|jpe?g|gif|webp)$/i,
       use: [
         {
-          loader: "file-loader",
+          loader: 'file-loader',
           options: {
-            name: "img/[name].[hash].[ext]"
+            name: 'img/[name].[hash].[ext]'
           }
         }
       ]
@@ -51,12 +52,12 @@ const configureImageLoader = buildType => {
   }
   if (buildType === MODERN_CONFIG) {
     return {
-      test: /\.(png|jpe?g|gif|svg|webp)$/i,
+      test: /\.(png|jpe?g|gif|webp)$/i,
       use: [
         {
-          loader: "file-loader",
+          loader: 'file-loader',
           options: {
-            name: "img/[name].[hash].[ext]"
+            name: 'img/[name].[hash].[ext]'
           }
         }
       ]
@@ -64,13 +65,31 @@ const configureImageLoader = buildType => {
   }
 };
 
+// Configure SVG loader
+const configureSVGLoader = () => {
+  return {
+    test: /\.svg$/,
+    rules: [{
+      oneOf: [{
+        loader: 'vue-svg-loader',
+      }, {
+        resourceQuery: /^\?external/,
+        loader: 'file-loader',
+        options: {
+          name: 'img/[name].[hash].[ext]'
+        }
+      }]
+    }]
+  };
+}
+
 // Configure the Postcss loader
 const configurePostcssLoader = buildType => {
   // Don't generate CSS for the legacy config in development
   if (buildType === LEGACY_CONFIG) {
     return {
       test: /\.(pcss|css)$/,
-      loader: "ignore-loader"
+      loader: 'ignore-loader'
     };
   }
   if (buildType === MODERN_CONFIG) {
@@ -78,23 +97,23 @@ const configurePostcssLoader = buildType => {
       test: /\.(pcss|css)$/,
       use: [
         {
-          loader: "style-loader"
+          loader: 'style-loader'
         },
         {
-          loader: "vue-style-loader"
+          loader: 'vue-style-loader'
         },
         {
-          loader: "css-loader",
+          loader: 'css-loader',
           options: {
             importLoaders: 2,
             sourceMap: true
           }
         },
         {
-          loader: "resolve-url-loader"
+          loader: 'resolve-url-loader'
         },
         {
-          loader: "postcss-loader",
+          loader: 'postcss-loader',
           options: {
             sourceMap: true
           }
@@ -108,34 +127,36 @@ const configurePostcssLoader = buildType => {
 module.exports = [
   merge(common.legacyConfig, {
     output: {
-      filename: path.join("./js", "[name]-legacy.[hash].js"),
-      publicPath: settings.devServerConfig.public() + "/"
+      filename: path.join('./js', '[name]-legacy.[hash].js'),
+      publicPath: settings.devServerConfig.public() + '/'
     },
-    mode: "development",
-    devtool: "inline-source-map",
+    mode: 'development',
+    devtool: 'cheap-source-map',
     devServer: configureDevServer(LEGACY_CONFIG),
     module: {
       rules: [
         configurePostcssLoader(LEGACY_CONFIG),
-        configureImageLoader(LEGACY_CONFIG)
+        configureImageLoader(LEGACY_CONFIG),
+        configureSVGLoader(LEGACY_CONFIG)
       ]
     },
     plugins: [new webpack.HotModuleReplacementPlugin()]
   }),
   merge(common.modernConfig, {
     output: {
-      filename: path.join("./js", "[name].[hash].js"),
-      publicPath: settings.devServerConfig.public() + "/"
+      filename: path.join('./js', '[name].[hash].js'),
+      publicPath: settings.devServerConfig.public() + '/'
     },
-    mode: "development",
-    devtool: "inline-source-map",
+    mode: 'development',
+    devtool: 'cheap-source-map',
     devServer: configureDevServer(MODERN_CONFIG),
     module: {
       rules: [
         configurePostcssLoader(MODERN_CONFIG),
-        configureImageLoader(MODERN_CONFIG)
+        configureImageLoader(MODERN_CONFIG),
+        configureSVGLoader(MODERN_CONFIG)
       ]
     },
-    plugins: [new webpack.HotModuleReplacementPlugin()]
+    plugins: [new webpack.HotModuleReplacementPlugin(), new DashboardPlugin()]
   })
 ];

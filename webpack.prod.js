@@ -1,29 +1,32 @@
 // webpack.prod.js - production builds
-const LEGACY_CONFIG = "legacy";
-const MODERN_CONFIG = "modern";
+const LEGACY_CONFIG = 'legacy';
+const MODERN_CONFIG = 'modern';
 
 // node modules
-const glob = require("glob-all");
-const merge = require("webpack-merge");
-const moment = require("moment");
-const path = require("path");
-const webpack = require("webpack");
+const glob = require('glob-all');
+const merge = require('webpack-merge');
+const moment = require('moment');
+const path = require('path');
+const webpack = require('webpack');
 
 // webpack plugins
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const CompressionPlugin = require("compression-webpack-plugin");
-const ImageminWebpWebpackPlugin = require("imagemin-webp-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const PurgecssPlugin = require("purgecss-webpack-plugin");
-const TerserPlugin = require("terser-webpack-plugin");
-const WhitelisterPlugin = require("purgecss-whitelister");
-const zopfli = require("@gfx/zopfli");
+const rimraf = require('rimraf');
+const CompressionPlugin = require('compression-webpack-plugin');
+const ImageminWebpWebpackPlugin = require('imagemin-webp-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const PurgecssPlugin = require('purgecss-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const WhitelisterPlugin = require('purgecss-whitelister');
+const zopfli = require('@gfx/zopfli');
 
 // config files
-const common = require("./webpack.common.js");
-const pkg = require("./package.json");
-const settings = require("./webpack.settings.js");
+const common = require('./webpack.common.js');
+const pkg = require('./package.json');
+const settings = require('./webpack.settings.js');
+
+// Clean build assets before continuing
+rimraf(settings.paths.dist.base, {}, () => console.log("\n\nRemoved all previous build assets.\n"));
 
 // Custom PurgeCSS extractor for Tailwind that allows special characters in
 // class names.
@@ -38,7 +41,7 @@ class TailwindExtractor {
 // Configure Compression webpack plugin
 const configureCompression = () => {
   return {
-    filename: "[path].gz[query]",
+    filename: '[path].gz[query]',
     test: /\.(js|css|html|svg)$/,
     threshold: 10240,
     minRatio: 0.8,
@@ -53,25 +56,16 @@ const configureCompression = () => {
   };
 };
 
-// Configure Clean webpack
-const configureCleanWebpack = () => {
-  return {
-    cleanOnceBeforeBuildPatterns: settings.paths.dist.clean,
-    verbose: true,
-    dry: false
-  };
-};
-
 // Configure Image loader
 const configureImageLoader = buildType => {
   if (buildType === LEGACY_CONFIG) {
     return {
-      test: /\.(png|jpe?g|gif|svg|webp)$/i,
+      test: /\.(png|jpe?g|gif|webp)$/i,
       use: [
         {
-          loader: "file-loader",
+          loader: 'file-loader',
           options: {
-            name: "img/[name].[hash].[ext]"
+            name: 'img/[name].[hash].[ext]'
           }
         }
       ]
@@ -79,29 +73,29 @@ const configureImageLoader = buildType => {
   }
   if (buildType === MODERN_CONFIG) {
     return {
-      test: /\.(png|jpe?g|gif|svg|webp)$/i,
+      test: /\.(png|jpe?g|gif|webp)$/i,
       use: [
         {
-          loader: "file-loader",
+          loader: 'file-loader',
           options: {
-            name: "img/[name].[hash].[ext]"
+            name: 'img/[name].[hash].[ext]'
           }
         },
         {
-          loader: "img-loader",
+          loader: 'img-loader',
           options: {
             plugins: [
-              require("imagemin-gifsicle")({
+              require('imagemin-gifsicle')({
                 interlaced: true
               }),
-              require("imagemin-mozjpeg")({
+              require('imagemin-mozjpeg')({
                 progressive: true,
                 arithmetic: false
               }),
-              require("imagemin-optipng")({
+              require('imagemin-optipng')({
                 optimizationLevel: 5
               }),
-              require("imagemin-svgo")({
+              require('imagemin-svgo')({
                 plugins: [{ convertPathData: false }]
               })
             ]
@@ -111,6 +105,58 @@ const configureImageLoader = buildType => {
     };
   }
 };
+
+// Configure SVG loader
+const configureSvgLoader = buildType => {
+  if (buildType === LEGACY_CONFIG) {
+    return {
+      test: /\.svg$/,
+      oneOf: [
+        {
+          loader: 'vue-svg-loader',
+        },
+        {
+          resourceQuery: /external/,
+          loader: 'file-loader',
+          query: {
+            name: 'img/[name].[hash].[ext]',
+          },
+        },
+      ]
+    };
+  }
+  if (buildType === MODERN_CONFIG) {
+    return {
+      test: /\.svg$/,
+      oneOf: [
+        {
+          loader: 'vue-svg-loader',
+        },
+        {
+          resourceQuery: /external/,
+          use: [
+            {
+              loader: 'file-loader',
+              query: {
+                name: 'img/[name].[hash].[ext]',
+              }
+            },
+            {
+              loader: 'img-loader',
+              options: {
+                plugins: [
+                  require('imagemin-svgo')({
+                    plugins: [{ convertPathData: false }]
+                  })
+                ]
+              }
+            }
+          ],
+        },
+      ]
+    };
+  }
+}
 
 // Configure optimization
 const configureOptimization = buildType => {
@@ -123,7 +169,7 @@ const configureOptimization = buildType => {
           styles: {
             name: settings.vars.cssName,
             test: /\.(pcss|css|vue)$/,
-            chunks: "all",
+            chunks: 'all',
             enforce: true
           }
         }
@@ -154,21 +200,21 @@ const configureOptimization = buildType => {
 const configurePostcssLoader = buildType => {
   if (buildType === LEGACY_CONFIG) {
     return {
-      test: /\.(pcss|css)$/,
+      test: /\.(css)$/,
       use: [
         MiniCssExtractPlugin.loader,
         {
-          loader: "css-loader",
+          loader: 'css-loader',
           options: {
             importLoaders: 2,
             sourceMap: true
           }
         },
         {
-          loader: "resolve-url-loader"
+          loader: 'resolve-url-loader'
         },
         {
-          loader: "postcss-loader",
+          loader: 'postcss-loader',
           options: {
             sourceMap: true
           }
@@ -180,7 +226,7 @@ const configurePostcssLoader = buildType => {
   if (buildType === MODERN_CONFIG) {
     return {
       test: /\.(pcss|css)$/,
-      loader: "ignore-loader"
+      loader: 'ignore-loader'
     };
   }
 };
@@ -219,21 +265,22 @@ const configureTerser = () => {
 module.exports = [
   merge(common.legacyConfig, {
     output: {
-      filename: path.join("./js", "[name]-legacy.[chunkhash].js")
+      filename: path.join('./js', '[name]-legacy.[chunkhash].js')
     },
-    mode: "production",
-    devtool: "source-map",
+    mode: 'production',
+    devtool: 'source-map',
     optimization: configureOptimization(LEGACY_CONFIG),
     module: {
       rules: [
         configurePostcssLoader(LEGACY_CONFIG),
-        configureImageLoader(LEGACY_CONFIG)
+        configureImageLoader(LEGACY_CONFIG),
+        configureSvgLoader(LEGACY_CONFIG)
       ]
     },
     plugins: [
       new MiniCssExtractPlugin({
         path: path.resolve(__dirname, settings.paths.dist.base),
-        filename: path.join("./css", "[name].[chunkhash].css")
+        filename: path.join('./css', '[name].[chunkhash].css')
       }),
       new PurgecssPlugin(configurePurgeCss()),
       new CompressionPlugin(configureCompression())
@@ -241,19 +288,19 @@ module.exports = [
   }),
   merge(common.modernConfig, {
     output: {
-      filename: path.join("./js", "[name].[chunkhash].js")
+      filename: path.join('./js', '[name].[chunkhash].js')
     },
-    mode: "production",
-    devtool: "source-map",
+    mode: 'production',
+    devtool: 'source-map',
     optimization: configureOptimization(MODERN_CONFIG),
     module: {
       rules: [
         configurePostcssLoader(MODERN_CONFIG),
-        configureImageLoader(MODERN_CONFIG)
+        configureImageLoader(MODERN_CONFIG),
+        configureSvgLoader(LEGACY_CONFIG)
       ]
     },
     plugins: [
-      new CleanWebpackPlugin(configureCleanWebpack()),
       new ImageminWebpWebpackPlugin(),
       new CompressionPlugin(configureCompression())
     ]

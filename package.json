@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "description": "Batch's Craft Starter",
   "scripts": {
-    "dev": "webpack-dev-server --config webpack.dev.js",
+    "dev": "webpack-dashboard -- webpack-dev-server --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js --progress --hide-modules"
   },
   "repository": {
@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "core-js": "^3.0.0",
+    "core-js": "3.6.4",
     "regenerator-runtime": "^0.13.2",
     "tailwindcss": "^1.0.0",
     "vue": "^2.5.17"
@@ -77,7 +77,6 @@
     "imagemin-webp-webpack-plugin": "^3.1.0",
     "img-loader": "^3.0.1",
     "mini-css-extract-plugin": "^0.9.0",
-    "moment": "^2.22.2",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "postcss": "^7.0.2",
     "postcss-advanced-variables": "^3.0.0",
@@ -89,6 +88,9 @@
     "postcss-preset-env": "^6.7.0",
     "postcss-property-lookup": "^2.0.0",
     "postcss-reporter": "^6.0.0",
+    "postcss-inline-svg": "^4.1.0",
+    "rimraf": "^3.0.1",
+    "webpack-dashboard": "^3.2.0",
     "purgecss-webpack-plugin": "^1.3.0",
     "purgecss-whitelister": "^2.2.0",
     "resolve-url-loader": "^3.0.0",

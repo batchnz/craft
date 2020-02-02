@@ -1,11 +1,10 @@
-@import "./fonts.css";
+@import './fonts.css';
 
-@tailwind base;
-
-@tailwind components;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
 
 /* Component includes go here */
 
-@tailwind utilities;
+@import 'tailwindcss/utilities';
 
 /* Utility includes go here */
