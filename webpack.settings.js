@@ -15,7 +15,7 @@ module.exports = {
       js: "./src/js/"
     },
     dist: {
-      base: `${process.env.DOCROOT}/dist/`,
+      base: `${process.env.DOCROOT || "public"}/dist/`,
       clean: ["**/*"]
     },
     templates: "./templates/"
