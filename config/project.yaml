@@ -1,58 +1,58 @@
-dateModified: 1580032932
+dateModified: 1584053980
 email:
   fromEmail: $SYSTEM_EMAIL_ADDRESS
   fromName: $SENDER_NAME
   template: $HTML_EMAIL_TEMPLATE
-  transportType: craft\mailgun\MailgunAdapter
   transportSettings:
-    domain: $MAILGUN_DOMAIN
     apiKey: $MAILGUN_API_KEY
+    domain: $MAILGUN_DOMAIN
     endpoint: ''
+  transportType: craft\mailgun\MailgunAdapter
 fieldGroups:
   fe6f6b78-e8c5-4738-9a49-74cc60e221dc:
     name: Common
 plugins:
-  twigpack:
-    edition: standard
-    enabled: true
-    schemaVersion: 1.0.0
-  neo:
-    edition: standard
-    enabled: true
-    schemaVersion: 2.2.0
-  seomatic:
-    edition: standard
-    enabled: true
-    schemaVersion: 3.0.8
-  navigation:
-    edition: standard
-    enabled: true
-    schemaVersion: 1.0.16
-  freeform:
-    edition: lite
-    enabled: true
-    schemaVersion: 3.0.5
-  imager:
-    edition: standard
-    enabled: true
-    schemaVersion: 2.0.0
-  image-resizer:
-    edition: standard
-    enabled: true
-    schemaVersion: 2.0.0
-  redactor:
-    edition: standard
-    enabled: true
-    schemaVersion: 2.3.0
-  http2-server-push:
-    edition: standard
-    enabled: true
-    schemaVersion: 1.0.0
   craft-title-to-sidebar:
     edition: standard
     enabled: true
     schemaVersion: 1.0.0
+  freeform:
+    edition: lite
+    enabled: true
+    schemaVersion: 3.0.5
+  http2-server-push:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  image-resizer:
+    edition: standard
+    enabled: true
+    schemaVersion: 2.0.0
+  imager:
+    edition: standard
+    enabled: true
+    schemaVersion: 2.0.0
   mailgun:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  navigation:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.16
+  neo:
+    edition: standard
+    enabled: true
+    schemaVersion: 2.2.0
+  redactor:
+    edition: standard
+    enabled: true
+    schemaVersion: 2.3.0
+  seomatic:
+    edition: standard
+    enabled: true
+    schemaVersion: 3.0.8
+  twigpack:
     edition: standard
     enabled: true
     schemaVersion: 1.0.0
@@ -71,13 +71,13 @@ sites:
     sortOrder: 1
 system:
   edition: pro
-  name: 'Batch Craft Starter'
   live: true
-  schemaVersion: 3.3.3
+  name: 'Batch Craft Starter'
+  schemaVersion: 3.4.10
   timeZone: Pacific/Fiji
 users:
-  requireEmailVerification: true
   allowPublicRegistration: false
   defaultGroup: null
-  photoVolumeUid: null
   photoSubpath: ''
+  photoVolumeUid: null
+  requireEmailVerification: true
