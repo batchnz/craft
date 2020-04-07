@@ -1,31 +1,33 @@
 // webpack.prod.js - production builds
-const LEGACY_CONFIG = 'legacy';
-const MODERN_CONFIG = 'modern';
+const LEGACY_CONFIG = "legacy";
+const MODERN_CONFIG = "modern";
 
 // node modules
-const glob = require('glob-all');
-const merge = require('webpack-merge');
-const path = require('path');
-const webpack = require('webpack');
+const glob = require("glob-all");
+const merge = require("webpack-merge");
+const path = require("path");
+const webpack = require("webpack");
 
 // webpack plugins
-const rimraf = require('rimraf');
-const CompressionPlugin = require('compression-webpack-plugin');
-const ImageminWebpWebpackPlugin = require('imagemin-webp-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const PurgecssPlugin = require('purgecss-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
-const WhitelisterPlugin = require('purgecss-whitelister');
-const zopfli = require('@gfx/zopfli');
+const rimraf = require("rimraf");
+const CompressionPlugin = require("compression-webpack-plugin");
+const ImageminWebpWebpackPlugin = require("imagemin-webp-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const PurgecssPlugin = require("purgecss-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
+const WhitelisterPlugin = require("purgecss-whitelister");
+const zopfli = require("@gfx/zopfli");
 
 // config files
-const common = require('./webpack.common.js');
-const pkg = require('./package.json');
-const settings = require('./webpack.settings.js');
+const common = require("./webpack.common.js");
+const pkg = require("./package.json");
+const settings = require("./webpack.settings.js");
 
 // Clean build assets before continuing
-rimraf(settings.paths.dist.base, {}, () => console.log("\n\nRemoved all previous build assets.\n"));
+rimraf(settings.paths.dist.base, {}, () =>
+  console.log("\n\nRemoved all previous build assets.\n")
+);
 
 // Custom PurgeCSS extractor for Tailwind that allows special characters in
 // class names.
@@ -40,34 +42,34 @@ class TailwindExtractor {
 // Configure Compression webpack plugin
 const configureCompression = () => {
   return {
-    filename: '[path].gz[query]',
+    filename: "[path].gz[query]",
     test: /\.(js|css|html|svg)$/,
     threshold: 10240,
     minRatio: 0.8,
     deleteOriginalAssets: false,
     compressionOptions: {
       numiterations: 15,
-      level: 9
+      level: 9,
     },
     algorithm(input, compressionOptions, callback) {
       return zopfli.gzip(input, compressionOptions, callback);
-    }
+    },
   };
 };
 
 // Configure Image loader
-const configureImageLoader = buildType => {
+const configureImageLoader = (buildType) => {
   if (buildType === LEGACY_CONFIG) {
     return {
       test: /\.(png|jpe?g|gif|webp)$/i,
       use: [
         {
-          loader: 'file-loader',
+          loader: "file-loader",
           options: {
-            name: 'img/[name].[hash].[ext]'
-          }
-        }
-      ]
+            name: "img/[name].[hash].[ext]",
+          },
+        },
+      ],
     };
   }
   if (buildType === MODERN_CONFIG) {
@@ -75,53 +77,53 @@ const configureImageLoader = buildType => {
       test: /\.(png|jpe?g|gif|webp)$/i,
       use: [
         {
-          loader: 'file-loader',
+          loader: "file-loader",
           options: {
-            name: 'img/[name].[hash].[ext]'
-          }
+            name: "img/[name].[hash].[ext]",
+          },
         },
         {
-          loader: 'img-loader',
+          loader: "img-loader",
           options: {
             plugins: [
-              require('imagemin-gifsicle')({
-                interlaced: true
+              require("imagemin-gifsicle")({
+                interlaced: true,
               }),
-              require('imagemin-mozjpeg')({
+              require("imagemin-mozjpeg")({
                 progressive: true,
-                arithmetic: false
+                arithmetic: false,
               }),
-              require('imagemin-optipng')({
-                optimizationLevel: 5
+              require("imagemin-optipng")({
+                optimizationLevel: 5,
               }),
-              require('imagemin-svgo')({
-                plugins: [{ convertPathData: false }]
-              })
-            ]
-          }
-        }
-      ]
+              require("imagemin-svgo")({
+                plugins: [{ convertPathData: false }],
+              }),
+            ],
+          },
+        },
+      ],
     };
   }
 };
 
 // Configure SVG loader
-const configureSvgLoader = buildType => {
+const configureSvgLoader = (buildType) => {
   if (buildType === LEGACY_CONFIG) {
     return {
       test: /\.svg$/,
       oneOf: [
         {
-          loader: 'vue-svg-loader',
+          loader: "vue-svg-loader",
         },
         {
           resourceQuery: /external/,
-          loader: 'file-loader',
+          loader: "file-loader",
           query: {
-            name: 'img/[name].[hash].[ext]',
+            name: "img/[name].[hash].[ext]",
           },
         },
-      ]
+      ],
     };
   }
   if (buildType === MODERN_CONFIG) {
@@ -129,36 +131,36 @@ const configureSvgLoader = buildType => {
       test: /\.svg$/,
       oneOf: [
         {
-          loader: 'vue-svg-loader',
+          loader: "vue-svg-loader",
         },
         {
           resourceQuery: /external/,
           use: [
             {
-              loader: 'file-loader',
+              loader: "file-loader",
               query: {
-                name: 'img/[name].[hash].[ext]',
-              }
+                name: "img/[name].[hash].[ext]",
+              },
             },
             {
-              loader: 'img-loader',
+              loader: "img-loader",
               options: {
                 plugins: [
-                  require('imagemin-svgo')({
-                    plugins: [{ convertPathData: false }]
-                  })
-                ]
-              }
-            }
+                  require("imagemin-svgo")({
+                    plugins: [{ convertPathData: false }],
+                  }),
+                ],
+              },
+            },
           ],
         },
-      ]
+      ],
     };
   }
-}
+};
 
 // Configure optimization
-const configureOptimization = buildType => {
+const configureOptimization = (buildType) => {
   if (buildType === LEGACY_CONFIG) {
     return {
       splitChunks: {
@@ -168,10 +170,10 @@ const configureOptimization = buildType => {
           styles: {
             name: settings.vars.cssName,
             test: /\.(pcss|css|vue)$/,
-            chunks: 'all',
-            enforce: true
-          }
-        }
+            chunks: "all",
+            enforce: true,
+          },
+        },
       },
       minimizer: [
         new TerserPlugin(configureTerser()),
@@ -179,53 +181,53 @@ const configureOptimization = buildType => {
           cssProcessorOptions: {
             map: {
               inline: false,
-              annotation: true
+              annotation: true,
             },
             safe: true,
-            discardComments: true
-          }
-        })
-      ]
+            discardComments: true,
+          },
+        }),
+      ],
     };
   }
   if (buildType === MODERN_CONFIG) {
     return {
-      minimizer: [new TerserPlugin(configureTerser())]
+      minimizer: [new TerserPlugin(configureTerser())],
     };
   }
 };
 
 // Configure Postcss loader
-const configurePostcssLoader = buildType => {
+const configurePostcssLoader = (buildType) => {
   if (buildType === LEGACY_CONFIG) {
     return {
       test: /\.(css)$/,
       use: [
         MiniCssExtractPlugin.loader,
         {
-          loader: 'css-loader',
+          loader: "css-loader",
           options: {
             importLoaders: 2,
-            sourceMap: true
-          }
+            sourceMap: true,
+          },
         },
         {
-          loader: 'resolve-url-loader'
+          loader: "resolve-url-loader",
         },
         {
-          loader: 'postcss-loader',
+          loader: "postcss-loader",
           options: {
-            sourceMap: true
-          }
-        }
-      ]
+            sourceMap: true,
+          },
+        },
+      ],
     };
   }
   // Don't generate CSS for the modern config in production
   if (buildType === MODERN_CONFIG) {
     return {
       test: /\.(pcss|css)$/,
-      loader: 'ignore-loader'
+      loader: "ignore-loader",
     };
   }
 };
@@ -245,9 +247,9 @@ const configurePurgeCss = () => {
     extractors: [
       {
         extractor: TailwindExtractor,
-        extensions: settings.purgeCssConfig.extensions
-      }
-    ]
+        extensions: settings.purgeCssConfig.extensions,
+      },
+    ],
   };
 };
 
@@ -256,7 +258,7 @@ const configureTerser = () => {
   return {
     cache: true,
     parallel: true,
-    sourceMap: true
+    sourceMap: true,
   };
 };
 
@@ -264,44 +266,44 @@ const configureTerser = () => {
 module.exports = [
   merge(common.legacyConfig, {
     output: {
-      filename: path.join('./js', '[name]-legacy.[chunkhash].js')
+      filename: path.join("./js", "[name]-legacy.[chunkhash].js"),
     },
-    mode: 'production',
-    devtool: 'source-map',
+    mode: "production",
+    devtool: "source-map",
     optimization: configureOptimization(LEGACY_CONFIG),
     module: {
       rules: [
         configurePostcssLoader(LEGACY_CONFIG),
         configureImageLoader(LEGACY_CONFIG),
-        configureSvgLoader(LEGACY_CONFIG)
-      ]
+        configureSvgLoader(LEGACY_CONFIG),
+      ],
     },
     plugins: [
       new MiniCssExtractPlugin({
         path: path.resolve(__dirname, settings.paths.dist.base),
-        filename: path.join('./css', '[name].[chunkhash].css')
+        filename: path.join("./css", "[name].[chunkhash].css"),
       }),
       new PurgecssPlugin(configurePurgeCss()),
-      new CompressionPlugin(configureCompression())
-    ]
+      new CompressionPlugin(configureCompression()),
+    ],
   }),
   merge(common.modernConfig, {
     output: {
-      filename: path.join('./js', '[name].[chunkhash].js')
+      filename: path.join("./js", "[name].[chunkhash].js"),
     },
-    mode: 'production',
-    devtool: 'source-map',
+    mode: "production",
+    devtool: "source-map",
     optimization: configureOptimization(MODERN_CONFIG),
     module: {
       rules: [
         configurePostcssLoader(MODERN_CONFIG),
         configureImageLoader(MODERN_CONFIG),
-        configureSvgLoader(LEGACY_CONFIG)
-      ]
+        configureSvgLoader(LEGACY_CONFIG),
+      ],
     },
     plugins: [
       new ImageminWebpWebpackPlugin(),
-      new CompressionPlugin(configureCompression())
-    ]
-  })
+      new CompressionPlugin(configureCompression()),
+    ],
+  }),
 ];
