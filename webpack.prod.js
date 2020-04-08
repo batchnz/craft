@@ -21,7 +21,6 @@ const zopfli = require("@gfx/zopfli");
 
 // config files
 const common = require("./webpack.common.js");
-const pkg = require("./package.json");
 const settings = require("./webpack.settings.js");
 
 // Clean build assets before continuing

@@ -21,8 +21,6 @@ module.exports = {
     templates: "./templates/",
   },
   urls: {
-    live: "https://www.example.co.nz/",
-    local: `https://${process.env.VIRTUAL_HOST || "www.craftstarter.batch"}/`,
     publicPath: () => process.env.PUBLIC_PATH || "/dist/",
   },
   vars: {
