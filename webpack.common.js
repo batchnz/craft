@@ -53,9 +53,10 @@ const configureBabelLoader = (browserList) => {
 // Configure eslint loader
 const configureEslintLoader = () => {
   return {
-    test: /\.js$/,
+    enforce: "pre",
+    test: /\.(js|vue)$/,
     exclude: /node_modules/,
-    use: ["eslint-loader"],
+    loader: "eslint-loader",
   };
 };
 
