@@ -4,6 +4,8 @@
   "description": "Batch's Craft Starter",
   "scripts": {
     "dev": "webpack-dashboard -- webpack-dev-server --config webpack.dev.js",
+    "dev-legacy": "webpack-dashboard -- webpack-dev-server --config webpack.dev.js --env.BUILD_TYPE=legacy",
+    "dev-combined": "webpack-dashboard -- webpack-dev-server --config webpack.dev.js --env.BUILD_TYPE=combined",
     "build": "webpack --config webpack.prod.js --progress --hide-modules"
   },
   "repository": {

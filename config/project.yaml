@@ -1,4 +1,4 @@
-dateModified: 1584053980
+dateModified: 1586311145
 email:
   fromEmail: $SYSTEM_EMAIL_ADDRESS
   fromName: $SENDER_NAME
@@ -19,7 +19,7 @@ plugins:
   freeform:
     edition: lite
     enabled: true
-    schemaVersion: 3.0.5
+    schemaVersion: 3.0.6
   http2-server-push:
     edition: standard
     enabled: true
@@ -39,11 +39,11 @@ plugins:
   navigation:
     edition: standard
     enabled: true
-    schemaVersion: 1.0.16
+    schemaVersion: 1.0.17
   neo:
     edition: standard
     enabled: true
-    schemaVersion: 2.2.0
+    schemaVersion: 2.3.0
   redactor:
     edition: standard
     enabled: true
