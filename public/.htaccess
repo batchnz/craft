@@ -4,6 +4,7 @@
     # Redirect non-www to www
     RewriteCond %{HTTP_HOST} !^www\. [NC]
     RewriteCond %{HTTP_HOST} !^(.+)\.batch\.dev [NC]
+    RewriteCond %{HTTP:X-Original-Host} !^(.+)\.ngrok\.io
     RewriteRule ^(.*)$ https://www.%{HTTP_HOST}/$1 [R=301,L]
 
     # Redirect http to https

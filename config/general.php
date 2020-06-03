@@ -11,8 +11,12 @@
 // Define dev config based on defined environment variables
 $isHttps = getenv('HTTP_X_FORWARDED_PROTO') === 'https';
 $virtualHost = getenv('VIRTUAL_HOST');
-$serverName = getenv('SERVER_NAME');
-$devDomain = $serverName ? 'http'.($isHttps ? 's' : '').'://'.$serverName.'/' : null;
+$scheme = 'http'.($isHttps ? 's' : '').'://';
+$devHost = $virtualHost ? $scheme.$virtualHost.'/' : null;
+
+// Work out whether this site is being server via ngrok
+$isNgrok = array_key_exists('HTTP_X_ORIGINAL_HOST', $_SERVER) && strpos($_SERVER['HTTP_X_ORIGINAL_HOST'], 'ngrok');
+$testHost = $scheme.$_SERVER[$isNgrok ? 'HTTP_X_ORIGINAL_HOST' : 'SERVER_NAME'].'/';
 
 return [
     // Global settings
@@ -39,6 +43,13 @@ return [
         // Dev Mode (see https://craftcms.com/guides/what-dev-mode-does)
         'devMode' => true,
         'siteUrl' => $devDomain ?? 'http://localhost/'
+    ],
+
+    // Testing environment settings
+    'testing' => [
+        // Dev Mode (see https://craftcms.com/guides/what-dev-mode-does)
+        'devMode' => true,
+        'siteUrl' => $testHost,
     ],
 
     // Staging environment settings
