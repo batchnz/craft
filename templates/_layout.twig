@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{{ siteName }}</title>
+
+  {{ craft.twigpack.includeCssModule("styles.css", true) }}
+</head>
+
+<body class="bg-gray-700">
+  <div id="app">
+    {% block body %}
+    {% endblock %}
+  </div>
+
+  {{ craft.twigpack.includeSafariNomoduleFix() }}
+  {{ craft.twigpack.includeJsModule("app.js", true) }}
+
+</body>
+</html>
