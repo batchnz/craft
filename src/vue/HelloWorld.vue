@@ -1,6 +1,6 @@
 <template>
   <div class="hello text-center">
-    <img class="mx-auto" src="/assets/logo.png" />
+    <img class="mx-auto" src="/assets/logo.jpg" />
     <h1 class="text-3xl mb-4">{{ msg }}</h1>
     <p class="mb-3">
       You're viewing the <code>&#060;HelloWorld&#062;</code> component!
