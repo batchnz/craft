@@ -26,8 +26,8 @@ return [
 
     // webpack-dev-server config
     'devServer' => [
-      'manifestPath' => 'http://localhost:8080/',
-      'publicPath' => 'http://localhost:8080/',
+      'manifestPath' => getenv('DEVSERVER_PUBLIC'),
+      'publicPath' => getenv('DEVSERVER_PUBLIC'),
     ],
 
     // Local files config
@@ -41,13 +41,20 @@ return [
   // Dev environment settings
   'dev' => [
     // If `devMode` is on, use webpack-dev-server to all for HMR (hot module reloading)
-    'useDevServer' => true,
+        'useDevServer' => true,
+        // The JavaScript entry from the manifest.json to inject on Twig error pages
+        'errorEntry' => 'app.js',
+        // webpack-dev-server config
+        'devServer' => [
+            'manifestPath' => getenv('DEVSERVER_PUBLIC'),
+            'publicPath' => getenv('DEVSERVER_PUBLIC'),
+        ],
   ],
-  
+
   // Staging environment settings
   'staging' => [
   ],
-  
+
   // Production environment settings
   'production' => [
   ],

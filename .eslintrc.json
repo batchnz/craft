@@ -1,0 +1,19 @@
+{
+  "root": true,
+  "parser": "vue-eslint-parser",
+  "parserOptions": {
+    "parser": "babel-eslint",
+    "sourceType": "module",
+    "ecmaVersion": 2018
+  },
+  "extends": [
+    "plugin:vue/recommended",
+    "airbnb-base",
+    "prettier/vue",
+    "plugin:prettier/recommended"
+  ],
+  "env": {
+    "node": true,
+    "browser": true
+  }
+}

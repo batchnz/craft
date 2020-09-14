@@ -1,0 +1,13 @@
+version: "2.1"
+services:
+  cli:
+    environment:
+      DEVSERVER_HOST: 0.0.0.0
+      DEVSERVER_PUBLIC: https://webpack.${VIRTUAL_HOST}
+      DEVSERVER_POLL: 1000
+    labels:
+      - io.docksal.virtual-host=webpack.${VIRTUAL_HOST}
+      - io.docksal.virtual-port=8080
+      - io.docksal.cert-name=${VIRTUAL_HOST_CERT_NAME}
+    expose:
+      - "8080"

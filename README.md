@@ -1,45 +1,80 @@
-<p align="center"><a href="https://craftcms.com/" target="_blank"><img width="312" height="90" src="https://craftcms.com/craftcms.svg" alt="Craft CMS"></a></p>
+# craft-starter
 
-## About Craft CMS 
+[Batch](https://batch.nz)'s Craft project starter that integrates VueJS and Tailwind CSS and Docksal configuration.
 
-Craft is a flexible and scalable CMS for creating bespoke digital experiences on the web and beyond.
+## Dependencies
 
-It features:
+* [Composer](https://getcomposer.org/)
+* [Node/Npm](https://nodejs.org/en/)
+* [Docksal](https://docksal.io/)
 
-- An intuitive Control Panel for administration tasks and content creation.
-- A clean-slate approach to content modeling and [front-end development](https://docs.craftcms.com/v3/dev/).
-- A built-in Plugin Store with hundreds of free and commercial [plugins](https://plugins.craftcms.com/).
-- A robust framework for [module and plugin development](https://docs.craftcms.com/v3/extend/).
+## What's Included
 
-Learn more about it at [craftcms.com](https://craftcms.com).
+* Craft Starter - A starter Craft installation, setup with Twigpack configured for loading production and development assets
+* Craft Webpack - A Craft/Tailwind/Vue Webpack configuration
+* Docksal Configuration - A default docksal environment, configured for webpack development with Ngrok support.
 
-## Tech Specs
+## Getting Started
+### Installation
 
-Craft is written in PHP (7+), and built on the [Yii 2 framework](https://www.yiiframework.com/). It can connect to MySQL (5.5+) and PostgreSQL (9.5+) for content storage.
+Create project with Composer and install dependencies
 
-## Installation
+1. `composer create-project batchnz/craft-starter myproject`
+2. `cd myproject`
+3. `composer install`
 
-See the following documentation pages for help installing Craft 3:
+### Docksal Setup
+1. Edit .docksal/docksal.env and configure the VIRTUAL_HOST and VIRTUAL_HOST_CERT_NAME environment variables
 
-- [Server Requirements](https://docs.craftcms.com/v3/requirements.html)
-- [Installation Instructions](https://docs.craftcms.com/v3/installation.html)
-- [Upgrading from Craft 2](https://docs.craftcms.com/v3/upgrade.html)
+2. run `fin up`
 
-## Popular Resources
+3. run `fin exec craft setup` and follow the prompts
 
-- **[Documentation](http://docs.craftcms.com/v3/)** – Read the official docs.
-- **[Guides](https://craftcms.com/guides)** – Follow along with the official guides.
-- **[#craftcms](https://twitter.com/hashtag/craftcms)** – See the latest tweets about Craft.
-- **[Discord](https://craftcms.com/discord)** – Meet the community.
-- **[Stack Exchange](http://craftcms.stackexchange.com/)** – Get help and help others.
-- **[CraftQuest](https://craftquest.io/)** – Watch unlimited video lessons and courses.
-- **[Craft Link List](http://craftlinklist.com/)** – Stay in-the-know.
-- **[nystudio107 Blog](https://nystudio107.com/blog)** – Learn Craft and modern web development.
+   The default Docksal database details are
 
-## References
+   * Host: DB
+   * Username: root
+   * Password: root
+   * database: default
 
-- **[craftcms/craft](https://github.com/craftcms/craft)**
-- **[An Annotated webpack 4 Config for Frontend Web Development](https://nystudio107.com/blog/an-annotated-webpack-4-config-for-frontend-web-development)**
-- **[Annotated webpack 4 Config](https://github.com/nystudio107/annotated-webpack-4-config)**
-- **[CraftQuest Craft Starter Project](https://github.com/CraftQuest/craft-starter)**
-- **[nystudio107/craft](https://github.com/nystudio107/craft)**
+### SSL Certificate generation
+(requires [mkcert](https://docs.docksal.io/tools/mkcert))
+
+Generate a new certificate using the environment variables
+
+`fin debug -c 'mkdir -p ${CONFIG_CERTS}; mkcert -key-file ${CONFIG_CERTS}/${VIRTUAL_HOST}.key -cert-file ${CONFIG_CERTS}/${VIRTUAL_HOST}.crt *.${VIRTUAL_HOST} ${VIRTUAL_HOST}'`
+
+Reset the vhost-proxy container to load the new certificate
+
+`fin system reset vhost-proxy`
+
+### Craft Plugins
+Use the `fin exec craft plugin/install` command to install any required plugins.
+At a minimum, you will need Twigpack to load the CSS/Javascript assets into the template
+
+ `fin exec craft plugin/install twigpack`
+
+By default, we also include
+
+* [Mailgun](https://github.com/craftcms/mailgun)
+* [Redactor](https://github.com/craftcms/redactor)
+* [SEOMatic](https://github.com/nystudio107/craft-seomatic)
+* [Freeform](https://github.com/solspace/craft3-freeform)
+* [Navigation](https://github.com/verbb/navigation)
+
+### Webpack / Build Tool
+Install the depdendencies for the build tool
+
+`npm/yarn install`
+
+**Production**
+
+`npm run/yarn build`
+
+If you only want the modern or legacy build, you can pass either `--modern` or `--legacy` flags to the build tool. By default it will do a combined build (both modern and legacy).
+
+**Development**
+
+Run the development pipeline on the docksal container. It will be available at webpack.{yourdomain}
+
+`fin exec npm run/yarn dev`

@@ -1,0 +1,83 @@
+dateModified: 1586311145
+email:
+  fromEmail: $SYSTEM_EMAIL_ADDRESS
+  fromName: $SENDER_NAME
+  template: $HTML_EMAIL_TEMPLATE
+  transportSettings:
+    apiKey: $MAILGUN_API_KEY
+    domain: $MAILGUN_DOMAIN
+    endpoint: ''
+  transportType: craft\mailgun\MailgunAdapter
+fieldGroups:
+  fe6f6b78-e8c5-4738-9a49-74cc60e221dc:
+    name: Common
+plugins:
+  craft-title-to-sidebar:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  freeform:
+    edition: lite
+    enabled: true
+    schemaVersion: 3.0.6
+  http2-server-push:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  image-resizer:
+    edition: standard
+    enabled: true
+    schemaVersion: 2.0.0
+  imager:
+    edition: standard
+    enabled: true
+    schemaVersion: 2.0.0
+  mailgun:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  navigation:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.17
+  neo:
+    edition: standard
+    enabled: true
+    schemaVersion: 2.3.0
+  redactor:
+    edition: standard
+    enabled: true
+    schemaVersion: 2.3.0
+  seomatic:
+    edition: standard
+    enabled: true
+    schemaVersion: 3.0.8
+  twigpack:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+siteGroups:
+  a50ebe94-de60-4d01-8ed1-cdc869db10a2:
+    name: 'Batch Craft Starter'
+sites:
+  b64eed85-0eb2-4e61-a970-b2d6634ba3b9:
+    baseUrl: $DEFAULT_SITE_URL
+    handle: default
+    hasUrls: true
+    language: en-US
+    name: 'Batch Craft Starter'
+    primary: true
+    siteGroup: a50ebe94-de60-4d01-8ed1-cdc869db10a2
+    sortOrder: 1
+system:
+  edition: pro
+  live: true
+  name: 'Batch Craft Starter'
+  schemaVersion: 3.4.10
+  timeZone: Pacific/Fiji
+users:
+  allowPublicRegistration: false
+  defaultGroup: null
+  photoSubpath: ''
+  photoVolumeUid: null
+  requireEmailVerification: true
