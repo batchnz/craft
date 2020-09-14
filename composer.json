@@ -1,24 +1,29 @@
 {
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/batchnz/craft-twigpack"
-    }
+  "name": "batch/craft-starter",
+  "description": "Batch's Composer starter project for Craft CMS",
+  "keywords": [
+    "craft",
+    "cms",
+    "craftcms",
+    "project"
   ],
+  "license": "Unlicense",
+  "homepage": "https://craftcms.com/",
+  "type": "project",
+  "support": {
+    "email": "support@craftcms.com",
+    "issues": "https://github.com/craftcms/cms/issues",
+    "forum": "https://craftcms.stackexchange.com/",
+    "source": "https://github.com/craftcms/cms",
+    "docs": "https://craftcms.com/docs",
+    "rss": "https://craftcms.com/changelog.rss"
+  },
   "require": {
-    "aelvan/imager": "v2.4.0",
-    "craftcms/cms": "3.4.14",
-    "craftcms/mailgun": "1.4.2",
-    "craftcms/redactor": "2.6.1",
-    "nystudio107/craft-seomatic": "3.2.51",
-    "nystudio107/craft-twigpack": "1.3.0",
-    "solspace/craft-freeform": "3.6.6",
-    "spicyweb/craft-neo": "2.7.5",
-    "superbig/craft3-http2serverpush": "1.0.1",
-    "thejoshsmith/craft-title-to-sidebar": "1.0.1",
-    "verbb/image-resizer": "2.0.6",
-    "verbb/navigation": "1.3.8",
+    "craftcms/cms": "^3.5.0",
     "vlucas/phpdotenv": "^3.4.0"
+  },
+  "require-dev": {
+    "yiisoft/yii2-shell": "^2.0.3"
   },
   "autoload": {
     "psr-4": {
@@ -33,8 +38,15 @@
     }
   },
   "scripts": {
-    "post-root-package-install": [
-      "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+    "post-create-project-cmd": [
+      "@php -r \"copy('.env.example', '.env');\"",
+      "@php -r \"unlink('composer.json');\"",
+      "@php -r \"unlink('composer.lock');\"",
+      "@php -r \"rename('composer.json.default', 'composer.json');\"",
+      "@composer dump-autoload -o",
+      "yarn install",
+      "yarn tailwind init tailwind.config.js",
+      "@php craft setup/welcome"
     ]
   }
 }
