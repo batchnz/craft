@@ -48,7 +48,7 @@
     "vue": "^2.6.12"
   },
   "devDependencies": {
-    "@batch/craft-webpack": "file:../craft-webpack"
+    "@batch/craft-webpack": "^1.0.0"
   },
   "author": "Josh Smith <josh@batch.nz>",
   "license": "MIT",
