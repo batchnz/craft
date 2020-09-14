@@ -67,6 +67,10 @@ Install the depdendencies for the build tool
 
 `npm/yarn install`
 
+Create a Tailwind config file
+
+`npx/yarn tailwind init`
+
 **Production**
 
 `npm run/yarn build`

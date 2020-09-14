@@ -44,8 +44,7 @@
       "@php -r \"unlink('composer.lock');\"",
       "@php -r \"rename('composer.json.default', 'composer.json');\"",
       "@composer dump-autoload -o",
-      "yarn install",
-      "yarn tailwind init tailwind.config.js",
+      "@composer install",
       "@php craft setup/welcome"
     ]
   }
