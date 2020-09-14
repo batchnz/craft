@@ -1,4 +1,5 @@
 {% extends '_layout' %}
+
 {% block body %}
   {% set info = {
     craftVersion: craft.app.getVersion(),
@@ -8,4 +9,4 @@
   <hello-world :info="{{ info|json_encode }}">
     {{ getenv('DB_DATABASE') }}
   </hello-world>
-{% endblock %}%
+{% endblock %}
