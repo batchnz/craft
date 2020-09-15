@@ -14,6 +14,8 @@
 * Craft Webpack - A Craft/Tailwind/Vue Webpack configuration
 * Docksal Configuration - A default docksal environment, configured for webpack development with Ngrok support.
 
+
+
 ## Getting Started
 ### Installation
 
@@ -75,10 +77,49 @@ Create a Tailwind config file
 
 `npm run/yarn build`
 
-If you only want the modern or legacy build, you can pass either `--modern` or `--legacy` flags to the build tool. By default it will do a combined build (both modern and legacy).
-
 **Development**
 
 Run the development pipeline on the docksal container. It will be available at webpack.{yourdomain}
 
 `fin exec npm run/yarn dev`
+
+If want to use the legacy or combined build types during development, you use the`dev-modern` or `dev-combined` tasks
+
+## Build Configuration
+
+**Settings**
+
+The settings in [webpack.settings.js](https://github.com/batchnz/craft-webpack/blob/master/webpack.settings.js) can be overridden at a project level by placing a webpack.settings.js file in the project root. This will be merged with the base webpack.settings.js file during build.
+
+eg.
+
+```javascript
+module.exports = {
+    paths: {
+        src: {
+            base: "./resources/",
+            css: "./resources/css/",
+            js: "./resources/js/"
+        }
+    }
+};
+```
+
+**Webpack Config**
+
+Any custom Webpack config can be included by adding a webpack.config.js in the project root. This will be merged with the final Webpack config during build.
+
+eg. 
+
+```javascript
+const path = require("path");
+
+module.exports = {
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "src/vue/")
+    }
+  }
+};
+```
+
