@@ -15,7 +15,7 @@
 ## Getting Started
 Create project with Composer
 
-`fin rc composer create-project batch/craft-starter myproject`
+`fin rc composer create-project batch/craft-starter myproject --remove-vcs`
 
 ### Setup Docksal
 Edit the .docksal/docksal.env and configure the `VIRTUAL_HOST` and `VIRTUAL_HOST_CERT_NAME` environment variables
