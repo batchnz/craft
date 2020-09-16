@@ -4,8 +4,6 @@
 
 ## Dependencies
 
-* [Composer](https://getcomposer.org/)
-* [Node/Npm](https://nodejs.org/en/)
 * [Docksal](https://docksal.io/)
 
 ## What's Included
@@ -14,41 +12,17 @@
 * Craft Webpack - A Craft/Tailwind/Vue Webpack configuration
 * Docksal Configuration - A default docksal environment, configured for webpack development with Ngrok support.
 
-
-
 ## Getting Started
-### Installation
+Create project with Composer
 
-Create project with Composer and install dependencies
+`fin rc composer create-project batch/craft-starter myproject`
 
-1. `composer create-project batchnz/craft-starter myproject`
-2. `cd myproject`
-3. `composer install`
+### Setup Docksal
+Edit the .docksal/docksal.env and configure the `VIRTUAL_HOST` and `VIRTUAL_HOST_CERT_NAME` environment variables
 
-### Docksal Setup
-1. Edit .docksal/docksal.env and configure the VIRTUAL_HOST and VIRTUAL_HOST_CERT_NAME environment variables
+run `fin up`
 
-2. run `fin up`
-
-3. run `fin exec craft setup` and follow the prompts
-
-   The default Docksal database details are
-
-   * Host: DB
-   * Username: root
-   * Password: root
-   * database: default
-
-### SSL Certificate generation
-(requires [mkcert](https://docs.docksal.io/tools/mkcert))
-
-Generate a new certificate using the environment variables
-
-`fin debug -c 'mkdir -p ${CONFIG_CERTS}; mkcert -key-file ${CONFIG_CERTS}/${VIRTUAL_HOST}.key -cert-file ${CONFIG_CERTS}/${VIRTUAL_HOST}.crt *.${VIRTUAL_HOST} ${VIRTUAL_HOST}'`
-
-Reset the vhost-proxy container to load the new certificate
-
-`fin system reset vhost-proxy`
+run `fin exec craft install` and follow the prompts
 
 ### Craft Plugins
 Use the `fin exec craft plugin/install` command to install any required plugins.
@@ -58,40 +32,54 @@ At a minimum, you will need Twigpack to load the CSS/Javascript assets into the 
 
 By default, we also include
 
-* [Mailgun](https://github.com/craftcms/mailgun)
-* [Redactor](https://github.com/craftcms/redactor)
-* [SEOMatic](https://github.com/nystudio107/craft-seomatic)
-* [Freeform](https://github.com/solspace/craft3-freeform)
-* [Navigation](https://github.com/verbb/navigation)
+* [Mailgun](https://github.com/craftcms/mailgun) - `fin exec craft plugin/install mailgun`
+* [Redactor](https://github.com/craftcms/redactor) - `fin exec craft plugin/install redactor`
+* [SEOMatic](https://github.com/nystudio107/craft-seomatic) -  `fin exec craft plugin/install seomatic`
+* [Freeform](https://github.com/solspace/craft3-freeform) -  `fin exec craft plugin/install freeform`
+* [Navigation](https://github.com/verbb/navigation)  - `fin exec craft plugin/install navigation`
 
 ### Webpack / Build Tool
 Install the depdendencies for the build tool
 
-`npm/yarn install`
+`fin exec npm install`
 
 Create a Tailwind config file
 
-`npx/yarn tailwind init`
+`fin exec npx tailwind init`
 
 **Production**
 
-`npm run/yarn build`
+`fin exec npm run build`
 
 **Development**
 
 Run the development pipeline on the docksal container. It will be available at webpack.{yourdomain}
 
-`fin exec npm run/yarn dev`
+`fin exec npm run dev`
 
-If want to use the legacy or combined build types during development, you use the`dev-modern` or `dev-combined` tasks
+Use the following commands to specifically generate a *legacy* or *combined* browser build during development
+
+`fin exec npm run dev-legacy`
+
+`fin exec npm run dev-combined`
+
+### SSL Certificate generation
+
+Generate a new certificate (requires [mkcert addon](https://docs.docksal.io/tools/mkcert#setup-and-usage-via-addon))
+
+`fin mkcert create`
+
+Reset vhost-proxy to pick-up the new certificate
+
+`fin system reset vhost-proxy`
 
 ## Build Configuration
 
 **Settings**
 
-The settings in [webpack.settings.js](https://github.com/batchnz/craft-webpack/blob/master/webpack.settings.js) can be overridden at a project level by placing a webpack.settings.js file in the project root. This will be merged with the base webpack.settings.js file during build.
+The build settings in [webpack.settings.js](https://github.com/batchnz/craft-webpack/blob/master/webpack.settings.js) can be overridden at a project level by placing a webpack.settings.js file in the project root. This will be merged with the base webpack.settings.js file during build.
 
-eg.
+Example:
 
 ```javascript
 module.exports = {
@@ -109,7 +97,7 @@ module.exports = {
 
 Any custom Webpack config can be included by adding a webpack.config.js in the project root. This will be merged with the final Webpack config during build.
 
-eg. 
+Example:
 
 ```javascript
 const path = require("path");
