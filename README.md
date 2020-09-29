@@ -111,3 +111,9 @@ module.exports = {
 };
 ```
 
+## Testing
+
+**Frontend**
+
+The starter comes with [Jest](https://jestjs.io/) installed and configured, plus the [Vue testing framework](https://testing-library.com/docs/vue-testing-library/intro) helper library. To run the test suite, you can use the command `fin exec npm run test`. 
+
