@@ -58,7 +58,14 @@ module.exports = {
   // globalTeardown: undefined,
 
   // A set of global variables that need to be available in all test environments
-  // globals: {},
+  globals: {
+    "vue-jest": {
+      babelConfig: {
+        plugins: ["@babel/plugin-transform-modules-commonjs"],
+        presets: ["@babel/preset-env"]
+      }
+    }
+  },
 
   // The maximum amount of workers used to run your tests. Can be specified as % or a number. E.g. maxWorkers: 10% will use 10% of your CPU amount + 1 as the maximum worker number. maxWorkers: 2 will use a maximum of 2 workers.
   // maxWorkers: "50%",
@@ -74,7 +81,7 @@ module.exports = {
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
   moduleNameMapper: {
     "^@js$": "<rootDir>/src/js/$1",
-    "^@vue$": "<rootDir>/src/vue/$1",
+    "^@vue$": "<rootDir>/src/vue/$1"
   },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
@@ -164,9 +171,15 @@ module.exports = {
 
   // A map from regular expressions to paths to transformers
   transform: {
-    ".*\\.(js)$": "babel-jest",
-    ".*\\.(vue)$": "vue-jest",
-  },
+    ".*\\.(js)$": [
+      "babel-jest",
+      {
+        plugins: ["@babel/plugin-transform-modules-commonjs"],
+        presets: ["@babel/preset-env"]
+      }
+    ],
+    ".*\\.(vue)$": "vue-jest"
+  }
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
   // transformIgnorePatterns: [
