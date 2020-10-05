@@ -86,7 +86,14 @@ In order to use the docksal configuration in this starter, you'll need to have D
 ```sh
 fin rc composer create-project batch/craft-starter myproject --remove-vcs
 ```
-2. Edit the .docksal/docksal.env file and configure `VIRTUAL_HOST` and `VIRTUAL_HOST_CERT_NAME` to match the local host name you want to use eg. `craftstarter.batch`
+2. Update the docksal configuration
+
+Edit  `.docksal/docksal.env` and set the Virtual Host domains to match the local host name you want to use eg. craftstarter.batch
+
+```
+VIRTUAL_HOST="craftstarter.batch"
+VIRTUAL_HOST_CERT_NAME="craftstarter.batch"
+```
 ***Note:*** By default Docksal will only automatically resolve .docksal domains. [More info here](https://docs.docksal.io/core/system-dns/)
 
 3. Generate an SSL certificate. We recommend using the [mkcert global addon](https://docs.docksal.io/tools/mkcert#setup-and-usage-via-addon) which can be installed with
