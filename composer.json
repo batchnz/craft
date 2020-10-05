@@ -20,6 +20,7 @@
   },
   "require": {
     "craftcms/cms": "^3.5.0",
+    "nystudio107/craft-twigpack": "^1.2",
     "vlucas/phpdotenv": "^3.4.0"
   },
   "require-dev": {
