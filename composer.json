@@ -45,7 +45,10 @@
       "@php -r \"rename('composer.json.default', 'composer.json');\"",
       "@composer dump-autoload -o",
       "@composer install",
-      "@php craft setup/welcome"
+      "@php -r \"echo file_get_contents('batch.txt');\"",
+      "@php -r \"unlink('batch.txt');\"",
+      "@php craft setup/app-id",
+      "@php craft setup/security-key"
     ]
   }
 }

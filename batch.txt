@@ -1,0 +1,19 @@
+                                                                                                   
+#  BBBBBBBBBBBBBBBBB                              tttt                              hhhhhhh             
+#  B::::::::::::::::B                          ttt:::t                              h:::::h             
+#  B::::::BBBBBB:::::B                         t:::::t                              h:::::h             
+#  BB:::::B     B:::::B                        t:::::t                              h:::::h             
+#    B::::B     B:::::B  aaaaaaaaaaaaa   ttttttt:::::ttttttt        cccccccccccccccc h::::h hhhhh       
+#    B::::B     B:::::B  a::::::::::::a  t:::::::::::::::::t      cc:::::::::::::::c h::::hh:::::hhh    
+#    B::::BBBBBB:::::B   aaaaaaaaa:::::a t:::::::::::::::::t     c:::::::::::::::::c h::::::::::::::hh  
+#    B:::::::::::::BB             a::::a tttttt:::::::tttttt    c:::::::cccccc:::::c h:::::::hhh::::::h 
+#    B::::BBBBBB:::::B     aaaaaaa:::::a       t:::::t          c::::::c     ccccccc h::::::h   h::::::h
+#    B::::B     B:::::B  aa::::::::::::a       t:::::t          c:::::c              h:::::h     h:::::h
+#    B::::B     B:::::B a::::aaaa::::::a       t:::::t          c:::::c              h:::::h     h:::::h
+#    B::::B     B:::::Ba::::a    a:::::a       t:::::t    ttttttc::::::c     ccccccc h:::::h     h:::::h
+#  BB:::::BBBBBB::::::Ba::::a    a:::::a       t::::::tttt:::::tc:::::::cccccc:::::c h:::::h     h:::::h
+#  B:::::::::::::::::B a:::::aaaa::::::a       tt::::::::::::::t c:::::::::::::::::c h:::::h     h:::::h
+#  B::::::::::::::::B   a::::::::::aa:::a        tt:::::::::::tt  cc:::::::::::::::c h:::::h     h:::::h
+#  BBBBBBBBBBBBBBBBB     aaaaaaaaaa  aaaa          ttttttttttt      cccccccccccccccc hhhhhhh     hhhhhhh
+#
+#                                           https://batch.nz                                            
