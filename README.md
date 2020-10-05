@@ -279,7 +279,7 @@ Thanks to all the hard work by the teams behind the tools used in this project.
 [issues-shield]: https://img.shields.io/github/issues/batchnz/craft.svg?style=flat-square
 [issues-url]: https://github.com/batchnz/craft/issues
 [license-shield]: https://img.shields.io/github/license/batchnz/craft.svg?style=flat-square
-[license-url]: https://github.com/batchnz/craft/blob/master/LICENSE.txt
+[license-url]: https://github.com/batchnz/craft/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/batchnz
 [product-screenshot]: images/screenshot.png
