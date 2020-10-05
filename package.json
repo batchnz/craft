@@ -1,6 +1,5 @@
 {
   "name": "batch-craft-starter",
-  "version": "2.1.0",
   "description": "Batch's Craft Starter",
   "scripts": {
     "dev": "webpack-dev-server --progress --hide-modules --config=node_modules/@batch/craft-webpack/webpack.dev.js",
@@ -49,14 +48,12 @@
     "vue": "^2.6.12"
   },
   "devDependencies": {
-    "@babel/core": "^7.11.6",
-    "@babel/plugin-transform-modules-commonjs": "^7.10.4",
-    "@babel/preset-env": "^7.11.5",
     "@batch/craft-webpack": "^1.0.0",
     "@testing-library/dom": "^7.24.3",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/user-event": "^12.1.6",
     "@testing-library/vue": "^5.1.0",
+    "@babel/plugin-transform-modules-commonjs": "^7.10.4",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^26.3.0",
     "jest": "^26.4.2",
