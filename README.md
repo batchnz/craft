@@ -38,27 +38,28 @@
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
 * [Usage](#usage)
+  * [Webpack Build Tool](#webpack--build-tool)
+  * [Build Configuration](#build-configuration)
+  * [Craft Plugins](#craft-plugins)
 * [Roadmap](#roadmap)
 * [Contributing](#contributing)
 * [License](#license)
 * [Contact](#contact)
 * [Acknowledgements](#acknowledgements)
 
-
-
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-This package pulls together a series of 
+The idea behind this project was to create a CraftCMS starter package that allows us to get up and running and developing on projects quickly.
 
-Our workflow goes something like this:
-1. A new branch is created from master
-2. Changes are committed using Commitizen and linted with Commitlint
-3. A pull request is raised targeting the master branch
-4. Once merged, a GitLab pipeline will run analysing the new commits and generating a changelog, release notes and semver tag
+This starter comes set up, ready for for development with
 
-The idea behind this project was to create a simple installable dev tool that enforces consistest, high quality commit messages with auto-generated changelogs/release notes and to remove human emotion from the versioning.
-
+* TailwindCSS
+* VueJS
+* [craft-webpack](https://github.com/batchnz/craft-webpack) - our Webpack build configuration
+* Craft CMS with Twigpack
+* Jest for Frontend testing
+* Docksal configuration
 
 ### Built With
 
