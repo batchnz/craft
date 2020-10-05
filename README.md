@@ -65,7 +65,7 @@ The idea behind this project was to create a simple installable dev tool that en
 * [CraftCMS](https://craftcms.com/)
 * [VueJS](https://vuejs.org/)
 * [Tailwind CSS](https://tailwindcss.com/)
-* [Webpack](https://commitlint.js.org)
+* [Webpack](https://webpack.js.org/)
 * [Jest](https://jestjs.io/)
 * [Docksal](https://docksal.io/)
 
