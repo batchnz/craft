@@ -129,7 +129,7 @@ fin exec npm run build
 
 10. That's it!
 
-Your new project should now be available at the configured domain and you should see a demo/Hello World page to confirm. 
+Your new project should now be available at the configured domain and you should see a demo/Hello World page to confirm.
 
 <!-- USAGE EXAMPLES -->
 ## Usage
@@ -221,7 +221,7 @@ Twigpack is required, and installed by default. We also include the following co
 
 The starter comes with [Jest](https://jestjs.io/) installed and configured, plus the [Vue testing framework](https://testing-library.com/docs/vue-testing-library/intro) helper library. To run the test suite, you can use the command
 
-`fin exec npm run test`. 
+`fin exec npm run test`.
 
 
 <!-- ROADMAP -->
