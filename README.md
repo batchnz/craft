@@ -124,17 +124,12 @@ fin exec craft install
 fin exec npm install
 ```
 
-8. Generate a Tailwind config file
-```sh
-fin exec npx tailwind init
-```
-
-9. Build the asset files
+8. Build the asset files
 ```sh
 fin exec npm run build
 ```
 
-10. That's it!
+9. That's it!
 
 Your new project should now be available at the configured domain and you should see a demo/Hello World page to confirm.
 
@@ -147,11 +142,6 @@ Your new project should now be available at the configured domain and you should
 Install the depdendencies for the build tool
 ```sh
 fin exec npm install
-```
-
-Create a Tailwind config file
-```sh
-fin exec npx tailwind init
 ```
 
 **Production**
