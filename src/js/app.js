@@ -30,6 +30,9 @@ main().then(components => {
     components: {
       HelloWorld: () =>
         import(/* webpackChunkName: "HelloWorld" */ "../vue/HelloWorld.vue")
+    },
+    mounted() {
+      window.app.emit("vue-mounted");
     }
   });
   /* eslint-enable no-unused-vars */

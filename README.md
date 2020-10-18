@@ -41,6 +41,7 @@
   * [Webpack Build Tool](#webpack--build-tool)
   * [Build Configuration](#build-configuration)
   * [Craft Plugins](#craft-plugins)
+  * [Mixing Inline Scripts with Vue](#mixing-inline-scripts-with-vue)
 * [Roadmap](#roadmap)
 * [Contributing](#contributing)
 * [License](#license)
@@ -194,11 +195,13 @@ const path = require("path");
 module.exports = {
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "src/vue/")
+      "#": path.resolve(__dirname, "src/vue/")
     }
   }
 };
 ```
+
+We have provided a set of defaults to alias the src/ paths and additional entry points.
 
 ### Craft Plugins
 Use the `fin exec craft plugin/install` command to install any additional plugins.
@@ -211,6 +214,30 @@ Twigpack is required, and installed by default. We also include the following co
 * [Freeform](https://github.com/solspace/craft3-freeform) -  `fin exec craft plugin/install freeform`
 * [Navigation](https://github.com/verbb/navigation)  - `fin exec craft plugin/install navigation`
 
+
+### Mixing Inline Scripts with Vue
+On occasion we've found the need to run vanilla JS inline within a template (e.g. with Craft Commerce) and only run this code when our Vue app has mounted.
+
+Our solution is to provide an event bus available at `window.app` that is instantiated within the head of the document via `critical.js`. To use the event bus, simply subscribe and publish to events like so:
+
+Example: Subscribing to events
+
+```html
+<script type="text/javascript">
+  window.app.on("vue-mounted", () => {
+    alert("vue has mounted!");
+  });
+</script>
+```
+
+Example: Publishing events
+```javascript
+mounted() {
+  window.app.emit("vue-mounted");
+}
+```
+
+The `vue-mounted` event is provided out of the box to hook into from your twig templates.
 
 ## Testing
 
