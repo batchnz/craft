@@ -85,8 +85,11 @@ In order to use the docksal configuration in this starter, you'll need to have D
 
 1. Create a new project via composer, replacing 'myproject' with the desired project directory name
 ```sh
-fin rc composer create-project batch/craft-starter myproject --remove-vcs
+fin rc composer create-project batch/craft myproject --remove-vcs
 ```
+**Note:** We recommend using Docksal's [fin rc](https://docs.docksal.io/fin/fin-help/#run-cli) and [fin exec](https://docs.docksal.io/fin/fin-help/#exec) commands, which will execute the commands on a standalone 'cli' container mapped to the current directory. This ensures the commands will run even if Composer or NPM are not installed locally.
+
+The `--remove-vcs` flag will removes the batch/craft git metadata so this will be ready for use in a project repository.  
 2. Update the docksal configuration
 
 Edit  `.docksal/docksal.env` and set the Virtual Host domains to match the local host name you want to use eg. craftstarter.batch
