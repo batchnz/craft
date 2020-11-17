@@ -12,12 +12,12 @@ const main = async () => {
 
   return {
     Vue,
-    axios
+    axios,
   };
 };
 
 // Execute async function
-main().then(components => {
+main().then((components) => {
   const { Vue, axios } = components;
 
   // Add a global instance of axios to Vue
@@ -29,11 +29,11 @@ main().then(components => {
     el: "#app",
     components: {
       HelloWorld: () =>
-        import(/* webpackChunkName: "HelloWorld" */ "../vue/HelloWorld.vue")
+        import(/* webpackChunkName: "HelloWorld" */ "../vue/HelloWorld.vue"),
     },
     mounted() {
       window.app.emit("vue-mounted");
-    }
+    },
   });
   /* eslint-enable no-unused-vars */
 });
