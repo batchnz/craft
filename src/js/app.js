@@ -1,5 +1,7 @@
 /* eslint-disable no-unused-vars */
-import styles from "../css/app.css";
+import "#css/app-base.css";
+import "#css/app-components.css";
+import "#css/app-utilities.css";
 /* eslint-enable no-unused-vars */
 
 const main = async () => {
@@ -29,7 +31,7 @@ main().then((components) => {
     el: "#app",
     components: {
       HelloWorld: () =>
-        import(/* webpackChunkName: "HelloWorld" */ "../vue/HelloWorld.vue"),
+        import(/* webpackChunkName: "HelloWorld" */ "#vue/HelloWorld.vue"),
     },
     mounted() {
       window.app.emit("vue-mounted");
