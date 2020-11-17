@@ -1,8 +1,6 @@
-/* eslint-disable no-unused-vars */
 import "#css/app-base.css";
 import "#css/app-components.css";
 import "#css/app-utilities.css";
-/* eslint-enable no-unused-vars */
 
 const main = async () => {
   // Async load dependencies
