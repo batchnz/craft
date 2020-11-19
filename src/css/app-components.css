@@ -11,11 +11,4 @@
  *
  */
 
-/* @import components/my-component.css */
-
-/**
- * Include styles for individual pages
- *
- */
-
-/* @import pages/home.css */
+@import "./components/my-component.css";

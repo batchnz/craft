@@ -4,3 +4,9 @@
  *
  */
 @import "tailwindcss/utilities";
+
+/**
+ * Here we add custom utility classes
+ *
+ */
+@import "./utilities/my-utility.css";

@@ -9,4 +9,5 @@
  * classes
  *
  */
-@import "./fonts.css";
+@import "./base/fonts.css";
+@import "./base/variables.css";
