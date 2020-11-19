@@ -1,0 +1,12 @@
+/**
+ * This injects all of Tailwind's utility classes, generated based on your
+ * config file.
+ *
+ */
+@import "tailwindcss/utilities";
+
+/**
+ * Here we add custom utility classes
+ *
+ */
+@import "./utilities/my-utility.css";
