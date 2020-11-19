@@ -15,5 +15,15 @@
   "env": {
     "node": true,
     "browser": true
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["src"]
+      },
+      "webpack": {
+        "config": "node_modules/@batch/craft-webpack/webpack.dev.js"
+      }
+    }
   }
 }
