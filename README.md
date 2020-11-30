@@ -83,14 +83,18 @@ In order to use the docksal configuration in this starter, you'll need to have D
 
 ### Installation
 
-1. Create a new project via composer, replacing 'myproject' with the desired project directory name
+#### Create a new project via composer
+
+Replace 'myproject' with the desired project directory name
+
 ```sh
 fin rc composer create-project batch/craft myproject --remove-vcs
 ```
 **Note:** We recommend using Docksal's [fin rc](https://docs.docksal.io/fin/fin-help/#run-cli) and [fin exec](https://docs.docksal.io/fin/fin-help/#exec) commands, which will execute the commands on a standalone 'cli' container mapped to the current directory. This ensures the commands will run even if Composer or NPM are not installed locally.
 
-The `--remove-vcs` flag will removes the batch/craft git metadata so this will be ready for use in a project repository.  
-2. Update the docksal configuration
+The `--remove-vcs` flag will removes the batch/craft git metadata so this will be ready for use in a project repository.
+
+####Update the docksal configuration
 
 Edit  `.docksal/docksal.env` and set the Virtual Host domains to match the local host name you want to use eg. craftstarter.batch
 
@@ -100,7 +104,23 @@ VIRTUAL_HOST_CERT_NAME="craftstarter.batch"
 ```
 ***Note:*** By default Docksal will only automatically resolve .docksal domains. [More info here](https://docs.docksal.io/core/system-dns/)
 
-3. Generate an SSL certificate. We recommend using the [mkcert global addon](https://docs.docksal.io/tools/mkcert#setup-and-usage-via-addon) which can be installed with
+#### Run the installer
+
+We include an installer script that will finish setting up your project
+
+`fin batch/install`
+
+After executing this and following the prompts your project should be available
+at the configured domain, and you should see a demo/Hello World page to confirm.
+
+This command sets up SSL certificates using mkcert, runs the Craft installer, installs the
+Twigpack plugin, install npm dependencies and performs an initial build of the
+frontend assets. If you wish to do these steps manually, see the instructions below.
+
+
+### Manual Installation
+
+1. Generate an SSL certificate. We recommend using the [mkcert global addon](https://docs.docksal.io/tools/mkcert#setup-and-usage-via-addon) which can be installed with
 
 `fin addon install --global mkcert`
 
@@ -108,39 +128,41 @@ VIRTUAL_HOST_CERT_NAME="craftstarter.batch"
 fin mkcert create
 ```
 
-4. Reset vhost-proxy to pick-up the new certificate
+2. Reset vhost-proxy to pick-up the new certificate
 ```sh
 fin system reset vhost-proxy
 ```
 
-5. Start up the docksal containers
+3. Start up the docksal containers
 ```sh
 fin up
 ```
 
-6. Install Craft via the command line installer
+4. Install Craft via the command line installer
+```sh
+fin exec craft install
+```
+5. Install the Twigpack Plugin
 ```sh
 fin exec craft install
 ```
 
-7. Install NPM dependencies
+6. Install NPM dependencies
 ```sh
 fin exec npm install
 ```
 
-8. Build the asset files
+7. Build the asset files
 ```sh
 fin exec npm run build
 ```
 
-9. That's it!
+8. That's it!
 
 Your new project should now be available at the configured domain and you should see a demo/Hello World page to confirm.
 
 <!-- USAGE EXAMPLES -->
 ## Usage
-
-
 
 ### Webpack / Build Tool
 Install the depdendencies for the build tool

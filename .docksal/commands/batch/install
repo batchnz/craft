@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+## Project Install Command
+## Usage: fin batch/install
+
+# Create SSL Cert
+fin mkcert create
+
+# Boot the container
+fin up
+
+# Install craft
+fin exec craft install
+# Install twigpack
+fin exec craft plugin/install twigpack
+
+# Install npm dependencies
+fin exec npm install
+
+# Build
+fin exec npm run build
+
