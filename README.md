@@ -29,6 +29,7 @@
 
 
 
+
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
 
@@ -93,16 +94,6 @@ fin rc composer create-project batch/craft myproject --remove-vcs
 **Note:** We recommend using Docksal's [fin rc](https://docs.docksal.io/fin/fin-help/#run-cli) and [fin exec](https://docs.docksal.io/fin/fin-help/#exec) commands, which will execute the commands on a standalone 'cli' container mapped to the current directory. This ensures the commands will run even if Composer or NPM are not installed locally.
 
 The `--remove-vcs` flag will removes the batch/craft git metadata so this will be ready for use in a project repository.
-
-####Update the docksal configuration
-
-Edit  `.docksal/docksal.env` and set the Virtual Host domains to match the local host name you want to use eg. craftstarter.batch
-
-```
-VIRTUAL_HOST="craftstarter.batch"
-VIRTUAL_HOST_CERT_NAME="craftstarter.batch"
-```
-***Note:*** By default Docksal will only automatically resolve .docksal domains. [More info here](https://docs.docksal.io/core/system-dns/)
 
 #### Run the installer
 

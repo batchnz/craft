@@ -3,6 +3,9 @@
 ## Project Install Command
 ## Usage: fin batch/install
 
+project=${PWD##*/}
+fin rc sed -i "s/craftstarter\.batch/$project\.batch/g" \.docksal/docksal\.env
+
 # Create SSL Cert
 fin mkcert create
 
