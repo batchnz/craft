@@ -4,31 +4,25 @@
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
 
-
-
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
   <a href="https://github.com/batchnz/craft">
-    <img src="https://www.batch.nz/batch-logo.png" alt="Logo" width="80" height="80">
+    <img src="https://www.batch.nz/batch-logo.png" alt="Batch logo" width="80" height="80">
   </a>
 
   <h3 align="center">Batch Craft Starter</h3>
 
   <p align="center">
-    An opinionated Craft CMS project starter that integrates VueJS and Tailwind CSS and Docksal configuration.
+    An opinionated Craft CMS project starter that integrates Vue.js, Tailwind CSS and Docksal configuration.
     <br />
     <a href="https://github.com/batchnz/craft"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/batchnz/craft/issues">Report Bug</a>
-    ·
+    <a href="https://github.com/batchnz/craft/issues">Report Bug</a> ·
     <a href="https://github.com/batchnz/craft/issues">Request Feature</a>
   </p>
 </p>
-
-
-
 
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
@@ -52,128 +46,127 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-The idea behind this project was to create a CraftCMS starter package that allows us to get up and running and developing on projects quickly.
+The idea behind this project was to create a Craft CMS starter that allows us to get up and running and developing on projects quickly.
 
-This starter comes set up, ready for for development with
+This starter comes set up, ready for for development with:
 
-* TailwindCSS
-* VueJS
+* Tailwind CSS
+* Vue.js
 * [craft-webpack](https://github.com/batchnz/craft-webpack) - our Webpack build configuration
 * Craft CMS with Twigpack
-* Jest for Frontend testing
+* Jest for frontend testing
 * Docksal configuration
 
 ### Built With
 
-* [CraftCMS](https://craftcms.com/)
-* [VueJS](https://vuejs.org/)
+* [Craft CMS](https://craftcms.com/)
+* [Vue.js](https://vuejs.org/)
 * [Tailwind CSS](https://tailwindcss.com/)
 * [Webpack](https://webpack.js.org/)
 * [Jest](https://jestjs.io/)
 * [Docksal](https://docksal.io/)
 
-
 <!-- GETTING STARTED -->
 ## Getting Started
 
-To create a new project using this starter, follow these steps
+To create a new project using this starter, follow the below steps.
 
 ### Prerequisites
 
-In order to use the docksal configuration in this starter, you'll need to have Docksal up and running. You can find instructions at [https://docksal.io/](https://docksal.io/)
+In order to use the this starter, you'll need to have Docksal up and running. You can find instructions at [https://docksal.io/](https://docksal.io/).
 
 ### Installation
 
 #### Create a new project via composer
 
-Replace 'myproject' with the desired project directory name
-
 ```sh
 fin rc composer create-project batch/craft myproject --remove-vcs
 ```
+
+Replace 'myproject' with the desired project directory name.
+
 **Note:** We recommend using Docksal's [fin rc](https://docs.docksal.io/fin/fin-help/#run-cli) and [fin exec](https://docs.docksal.io/fin/fin-help/#exec) commands, which will execute the commands on a standalone 'cli' container mapped to the current directory. This ensures the commands will run even if Composer or NPM are not installed locally.
 
 The `--remove-vcs` flag will removes the batch/craft git metadata so this will be ready for use in a project repository.
 
 #### Run the installer
 
-We include an installer script that will finish setting up your project
+We include an installer script that will finish setting up your project:
 
 `fin batch/install`
 
 After executing this and following the prompts your project should be available
-at the configured domain, and you should see a demo/Hello World page to confirm.
+at the configured domain, and you should see a demo page to confirm.
 
-This command sets up SSL certificates using mkcert, runs the Craft installer, installs the
-Twigpack plugin, install npm dependencies and performs an initial build of the
-frontend assets. If you wish to do these steps manually, see the instructions below.
+This command sets up SSL certificates using mkcert, runs the Craft installer, installs the Twigpack plugin and npm dependencies and performs an initial build of the frontend assets. If you wish to do these steps manually, see the instructions below.
 
+### Manual installation
 
-### Manual Installation
-
-1. Generate an SSL certificate. We recommend using the [mkcert global addon](https://docs.docksal.io/tools/mkcert#setup-and-usage-via-addon) which can be installed with
-
-`fin addon install --global mkcert`
+1. Generate an SSL certificate. We recommend using the [mkcert global addon](https://docs.docksal.io/tools/mkcert#setup-and-usage-via-addon) which can be installed with: `fin addon install --global mkcert`
 
 ```sh
 fin mkcert create
 ```
 
-2. Reset vhost-proxy to pick-up the new certificate
-```sh
-fin system reset vhost-proxy
-```
+2. Start up the Docksal container
 
-3. Start up the docksal containers
 ```sh
 fin up
 ```
 
-4. Install Craft via the command line installer
-```sh
-fin exec craft install
-```
-5. Install the Twigpack Plugin
+3. Install Craft via the CLI
+
 ```sh
 fin exec craft install
 ```
 
-6. Install NPM dependencies
+4. Install the Twigpack plugin
+
+```sh
+fin exec craft plugin/install twigpack
+```
+
+5. Install npm dependencies
+
 ```sh
 fin exec npm install
 ```
 
-7. Build the asset files
+6. Build the asset files
+
 ```sh
 fin exec npm run build
 ```
 
-8. That's it!
-
-Your new project should now be available at the configured domain and you should see a demo/Hello World page to confirm.
+That's it! Your new project should now be available at the configured domain and you should see a demo page to confirm.
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
 ### Webpack / Build Tool
+
 Install the depdendencies for the build tool
+
 ```sh
 fin exec npm install
 ```
 
 **Production**
+
 ```sh
 fin exec npm run build
 ```
 
 **Development**
 
-Run the development pipeline on the docksal container. It will be available at webpack.{yourdomain}
+Run the development pipeline on the Docksal container. It will be available at webpack.{yourdomain}
+
 ```sh
 fin exec npm run dev
 ```
 
 Use the following commands to specifically generate a *legacy* or *combined* browser build during development
+
 ```sh
 fin exec npm run dev-legacy
 fin exec npm run dev-combined
@@ -222,14 +215,13 @@ We have provided a set of defaults to alias the src/ paths and additional entry 
 ### Craft Plugins
 Use the `fin exec craft plugin/install` command to install any additional plugins.
 
-Twigpack is required, and installed by default. We also include the following common plugins in the composer.json dependencies
+Twigpack is required, and installed by default. We also include the following common plugins in the composer.json dependencies:
 
 * [Mailgun](https://github.com/craftcms/mailgun) - `fin exec craft plugin/install mailgun`
 * [Redactor](https://github.com/craftcms/redactor) - `fin exec craft plugin/install redactor`
 * [SEOMatic](https://github.com/nystudio107/craft-seomatic) -  `fin exec craft plugin/install seomatic`
 * [Freeform](https://github.com/solspace/craft3-freeform) -  `fin exec craft plugin/install freeform`
 * [Navigation](https://github.com/verbb/navigation)  - `fin exec craft plugin/install navigation`
-
 
 ### Mixing Inline Scripts with Vue
 On occasion we've found the need to run vanilla JS inline within a template (e.g. with Craft Commerce) and only run this code when our Vue app has mounted.
@@ -247,6 +239,7 @@ Example: Subscribing to events
 ```
 
 Example: Publishing events
+
 ```javascript
 mounted() {
   window.app.emit("vue-mounted");
@@ -263,12 +256,10 @@ The starter comes with [Jest](https://jestjs.io/) installed and configured, plus
 
 `fin exec npm run test`.
 
-
 <!-- ROADMAP -->
 ## Roadmap
 
 See the [open issues](https://github.com/batchnz/craft/issues) for a list of proposed features (and known issues).
-
 
 <!-- CONTRIBUTING -->
 ## Contributing
@@ -281,32 +272,23 @@ Contributions are what make the open source community such an amazing place to b
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-
-
 <!-- LICENSE -->
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
-
-
 <!-- CONTACT -->
 ## Contact
 
-Josh Smith - [@batchnz](https://twitter.com/batchnz) - josh@batch.nz
-
-Jude Reid - [@batchnz](https://twitter.com/batchnz) - jude@batch.nz
+- Jude Reid - [@batchnz](https://twitter.com/batchnz) - jude@batch.nz
+- Alex Hatzipanis - [@hatzipanis](https://twitter.com/hatzipanis) - alex@batch.nz
 
 Project Link: [https://github.com/batchnz/craft](https://github.com/batchnz/craft)
-
-
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
 
 Thanks to all the hard work by the teams behind the tools used in this project.
-
-
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->

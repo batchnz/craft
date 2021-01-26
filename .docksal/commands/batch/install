@@ -6,20 +6,20 @@
 project=${PWD##*/}
 fin rc sed -i "s/craftstarter\.batch/$project\.batch/g" \.docksal/docksal\.env
 
-# Create SSL Cert
+# Generate an SSL certificate
 fin mkcert create
 
-# Boot the container
+# Start up the Docksal container
 fin up
 
-# Install craft
+# Install Craft via the CLI
 fin exec craft install
-# Install twigpack
+
+# Install the Twigpack plugin
 fin exec craft plugin/install twigpack
 
 # Install npm dependencies
 fin exec npm install
 
-# Build
+# Build the asset files
 fin exec npm run build
-
