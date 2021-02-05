@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+## Project Install Command
+## Usage: fin batch/install
+
+project=${PWD##*/}
+fin rc sed -i "s/craftstarter\.batch/$project\.batch/g" \.docksal/docksal\.env
+
+# Generate an SSL certificate
+fin mkcert create
+
+# Start up the Docksal container
+fin up
+
+# Install Craft via the CLI
+fin exec craft install
+
+# Install the Twigpack plugin
+fin exec craft plugin/install twigpack
+
+# Install npm dependencies
+fin exec npm install
+
+# Build the asset files
+fin exec npm run build
