@@ -178,6 +178,7 @@ module.exports = {
         presets: ["@babel/preset-env"]
       }
     ],
+    ".*\\.(svg)$": "<rootDir>/src/svg/transform.js",
     ".*\\.(vue)$": "vue-jest"
   }
 

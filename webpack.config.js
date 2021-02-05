@@ -13,7 +13,7 @@ module.exports = {
     critical: path.resolve(
       settings.paths.working,
       `${settings.paths.src.js}/critical.js`
-    ),
+    )
   },
   // Add your Webpack aliases here.
   // We've provided a set of defaults mapped to the /src directory.
@@ -24,6 +24,7 @@ module.exports = {
       "#js": path.resolve(__dirname, "src/js"),
       "#css": path.resolve(__dirname, "src/css"),
       "#fonts": path.resolve(__dirname, "src/fonts"),
-    },
-  },
+      "#svg": path.resolve(__dirname, "src/svg")
+    }
+  }
 };
