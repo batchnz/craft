@@ -1,4 +1,10 @@
 {
+  "eslint.format.enable": true,
+  
+  // PHP CS Fixer doesn't have a PSR12 ruleset yet, but the PHP CS Fixer ruleset is similar
+  "php-cs-fixer.rules": "@PhpCsFixer,declare_strict_types",
+  "php-cs-fixer.allowRisky": true,
+
   "[html]": {
     "editor.formatOnSave": true
   },
@@ -6,12 +12,18 @@
     "editor.formatOnSave": true
   },
   "[javascript]": {
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
   },
   "[vue]": {
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
   "[json]": {
     "editor.formatOnSave": true
-  }
+  },
+  "[php]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "junstyle.php-cs-fixer"
+  },
 }
